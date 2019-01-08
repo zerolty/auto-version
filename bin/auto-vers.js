@@ -4,6 +4,8 @@ var argv = process.argv.slice(2)
 
 var autoVers = require('../index')
 
+var version = require('../package.json').version
+
 var versions = null
 
 var inc = null
@@ -32,7 +34,7 @@ function main() {
                     case 'major':
                     case 'minor':
                     case 'patch':
-                    case 'release':
+                    case 'prerelease':
                         inc = argv.shift()
                         break
                     default:
@@ -56,14 +58,28 @@ function main() {
     if(versions) {
         return autoVers(versions)
     }
-    if(extra && inc === 'release') {
-        return autoVers('release', extra)
+    if(extra && inc === 'prerelease') {
+        return autoVers('prerelease', extra)
     }
-
-    if(inc)
-    return autoVers(inc)
+    if(inc) {
+        return autoVers(inc)
+    }
 }
 
 function help() {
-    console.log('help');
+    console.log(['auto-vers '+ version, 
+    '',
+    'Auto update version for your application',
+    'Usage: auto-vers [options] <version> [[...]]',
+    '',
+    'Options',
+    '-i --increment [<level>]',
+    '        Increment a version by the specified level.  Level can',
+    '        be one of: major, minor, patch or prerelease.',
+    "        Default level is 'patch'.",
+    '        Only one version may be specified.',
+    '-e --extra [<value>]',
+    '        This is for prerelease extra data',
+    "        Such as 'beta','alpha' ",
+    ].join('\n'));
 }

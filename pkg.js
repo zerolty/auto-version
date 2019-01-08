@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 
 function pkgRead() {
     const pkg = pkgPath();
@@ -19,7 +20,7 @@ function pkgRead() {
 
 function pkgUpdate(data) {
     const pkg = pkgPath();
-    const data = JSON.stringify(data, null, 2);
+    data = JSON.stringify(data, null, 2);
     fs.writeFileSync(pkg, data + os.EOL);
 }
 
