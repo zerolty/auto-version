@@ -1,6 +1,6 @@
 {
   "name": "auto-vers",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "./dist/index.js",
   "bin": {
@@ -12,7 +12,8 @@
     "build-a": "babel ./src --out-dir ./dist && npm run major",
     "patch": "./bin/auto-vers -i",
     "minor": "./bin/auto-vers -i minor",
-    "major": "./bin/auto-vers -i major"
+    "major": "./bin/auto-vers -i major",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha && ./node_modules/.bin/codecov"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,11 @@
     "semver": "^5.6.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "codecov": "^3.1.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }

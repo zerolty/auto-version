@@ -8,7 +8,7 @@ var version = require('../package.json').version
 
 var versions = null
 
-var inc = null
+var type = null
 
 var extra = null
 
@@ -35,10 +35,10 @@ function main() {
                     case 'minor':
                     case 'patch':
                     case 'prerelease':
-                        inc = argv.shift()
+                        type = argv.shift()
                         break
                     default:
-                        inc = 'patch'
+                        type = 'patch'
                         break
                 }
                 break
@@ -56,13 +56,13 @@ function main() {
         }
     }
     if(versions) {
-        return autoVers(versions)
+        return autoVers({version: versions})
     }
-    if(extra && inc === 'prerelease') {
-        return autoVers('prerelease', extra)
+    if(extra && type === 'prerelease') {
+        return autoVers({type: 'prerelease', extra})
     }
-    if(inc) {
-        return autoVers(inc)
+    if(type) {
+        return autoVers({type})
     }
 }
 

@@ -3,23 +3,21 @@ const colors = require('colors');
 
 const {pkgRead, pkgUpdate} = require('./pkg');
 
-const packageCtx = pkgRead();
-
-function autoVersion(type, extra) {
-    const oldVer = getCurrentVersion();
-    let newVer = '';
-    if(type.indexOf('.') > -1) {
-        newVer = type;
-    } else {
-        newVer = getNewVersion(oldVer, type, extra);
-    }
-    console.log(`version will update ${oldVer} -> ${newVer}`.red);
-    pkgUpdate(Object.assign(packageCtx, {version: newVer}))
+function autoVersion({type, extra, url}) {
+    const newVer = updateVersion({type, extra, url});
+    pkgUpdate(url, Object.assign(pkgRead(url), {version: newVer}));
     return newVer;
 }
 
-function getCurrentVersion() {
-    return packageCtx.version;
+function updateVersion({type, extra, url, version}) {
+    const oldVer = getCurrentVersion(url);
+    let newVer = version ? version : getNewVersion(oldVer, type, extra);
+    console.log(`version will update ${oldVer} -> ${newVer}`.red);
+    return newVer;
+}
+
+function getCurrentVersion(url) {
+    return pkgRead(url).version;
 }
 
 function getNewVersion(oldVer, type, extra) {

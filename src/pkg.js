@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
-function pkgRead() {
-    const pkg = pkgPath();
+function pkgRead(url) {
+    const pkg = url ? url : pkgPath();
     const packageCtx = fs.existsSync(pkg);
     if(packageCtx) {
         const file = fs.readFileSync(pkg);
@@ -18,8 +18,8 @@ function pkgRead() {
     throw new Error('No package.json found');
 }
 
-function pkgUpdate(data) {
-    const pkg = pkgPath();
+function pkgUpdate(url, data) {
+    const pkg = url ? url : pkgPath();
     data = JSON.stringify(data, null, 2);
     fs.writeFileSync(pkg, data + os.EOL);
 }
