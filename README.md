@@ -28,6 +28,7 @@ When you iterate over your application, updating the version is a trivial but in
 
 
 # Options
+```
 -i --increment [<level>]
         Increment a version by the specified level.  Level can
         be one of: major, minor, patch or prerelease.
@@ -36,6 +37,7 @@ When you iterate over your application, updating the version is a trivial but in
 -e --extra [<value>]
         This is for prerelease extra data
         Such as 'beta','alpha'
+```
 
 # License
 
