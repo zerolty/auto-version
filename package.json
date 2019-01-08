@@ -1,17 +1,25 @@
 {
   "name": "auto-vers",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "bin": {
+    "auto-vers": "./bin/auto-vers"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel ./src --out-dir ./dist && npm run patch",
+    "build-m": "babel ./src --out-dir ./dist && npm run minor",
+    "build-a": "babel ./src --out-dir ./dist && npm run major",
+    "patch": "./bin/auto-vers -i",
+    "minor": "./bin/auto-vers -i minor",
+    "major": "./bin/auto-vers -i major"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hua1995116/auto-version.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "hua199116<qiufenghyf@163.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hua1995116/auto-version/issues"
@@ -20,5 +28,8 @@
   "dependencies": {
     "colors": "^1.3.3",
     "semver": "^5.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
   }
 }

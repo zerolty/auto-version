@@ -2,7 +2,7 @@
 
 var argv = process.argv.slice(2)
 
-var autoVers = require('../index')
+var autoVers = require('../src/index')
 
 var version = require('../package.json').version
 

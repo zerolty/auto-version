@@ -4,8 +4,8 @@ const os = require('os');
 
 function pkgRead() {
     const pkg = pkgPath();
-    const package = fs.existsSync(pkg);
-    if(package) {
+    const packageCtx = fs.existsSync(pkg);
+    if(packageCtx) {
         const file = fs.readFileSync(pkg);
         let data = '';
         try {

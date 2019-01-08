@@ -3,7 +3,7 @@ const colors = require('colors');
 
 const {pkgRead, pkgUpdate} = require('./pkg');
 
-const package = pkgRead();
+const packageCtx = pkgRead();
 
 function autoVersion(type, extra) {
     const oldVer = getCurrentVersion();
@@ -14,12 +14,12 @@ function autoVersion(type, extra) {
         newVer = getNewVersion(oldVer, type, extra);
     }
     console.log(`version will update ${oldVer} -> ${newVer}`.red);
-    pkgUpdate(Object.assign(package, {version: newVer}))
+    pkgUpdate(Object.assign(packageCtx, {version: newVer}))
     return newVer;
 }
 
 function getCurrentVersion() {
-    return package.version;
+    return packageCtx.version;
 }
 
 function getNewVersion(oldVer, type, extra) {
