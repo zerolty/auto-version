@@ -1,8 +1,8 @@
 # auto-vers
 
 <p align="center">
-    <a href="https://travis-ci.org/hua1995116/auto-vers"><img src="https://travis-ci.org/hua1995116/auto-vers.svg?branch=master" /></a>
-    <a href="https://codecov.io/gh/hua1995116/auto-vers"><img src="https://codecov.io/gh/hua1995116/auto-vers/branch/master/graph/badge.svg" /></a>
+    <a href="https://travis-ci.org/hua1995116/auto-version"><img src="https://travis-ci.org/hua1995116/auto-version.svg?branch=master" /></a>
+    <a href="https://codecov.io/gh/hua1995116/auto-version"><img src="https://codecov.io/gh/hua1995116/auto-version/branch/master/graph/badge.svg" /></a>
     <a href="https://npmcharts.com/compare/auto-vers?minimal=true" rel="nofollow"><img src="https://img.shields.io/npm/dm/auto-vers.svg" style="max-width:100%;"></a>
     <a href="https://www.npmjs.com/package/auto-vers" rel="nofollow"><img src="https://img.shields.io/npm/v/auto-vers.svg" style="max-width:100%;"></a>
     <a href="https://www.npmjs.com/package/auto-vers" rel="nofollow"><img src="https://img.shields.io/npm/l/auto-vers.svg?style=flat" style="max-width:100%;"></a>
