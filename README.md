@@ -14,16 +14,17 @@
 
 # Usage
 
-```
-npm i auto-vers
+## cli
+```shell
+npm i auto-vers -g 
 
 auto-vers -h
 
 ```
 
-your package.json
+package.json
 
-```
+```json
 "script": {
     "build": "babel ./src --out-dir ./dist && ./bin/auto-vers -i",
     "build-m": "babel ./src --out-dir ./dist && ./bin/auto-vers -i minor",
@@ -31,6 +32,15 @@ your package.json
     "build-t": "babel ./src --out-dir ./dist && ./bin/auto-vers -i prerelease"
 }
 ```
+
+## Node
+```javascript
+const autoVers = require('auto-vers');
+
+autoVers({type: 'patch'}); // X.X.X
+
+```
+
 When you iterate over your application, updating the version is a trivial but indispensable little thing. You can run it while packaging your app, and then will do more with less.
 
 
