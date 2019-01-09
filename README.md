@@ -12,40 +12,46 @@
 
 > auto-vers is helpful to your work. It will auto update package version when build your application.
 
+When you iterate over your application, updating the version is a trivial but indispensable little thing. You can run it while packaging your app, and then will do more with less.
+
+# Feature
+
+- [x] upgrade major, minor, patch or prerelease
+- [ ] confirm update in cli
+
 # Usage
 
-## cli
 ```shell
-npm i auto-vers -g 
-
-auto-vers -h
-
+npm i auto-vers
 ```
 
-package.json
+## Cli
 
+package.json
 ```json
-"script": {
-    "build": "babel ./src --out-dir ./dist && ./bin/auto-vers -i",
-    "build-m": "babel ./src --out-dir ./dist && ./bin/auto-vers -i minor",
-    "build-a": "babel ./src --out-dir ./dist && ./bin/auto-vers -i major",
-    "build-t": "babel ./src --out-dir ./dist && ./bin/auto-vers -i prerelease"
+{
+    ...
+    "version": "1.0.0"
+    ...
 }
 ```
 
-## Node
-```javascript
-const autoVers = require('auto-vers');
-
-autoVers({type: 'patch'}); // X.X.X
-
+bash 
+```
+./bin/auto-vers -i
 ```
 
-When you iterate over your application, updating the version is a trivial but indispensable little thing. You can run it while packaging your app, and then will do more with less.
 
+package.json
+```json
+{
+    ...
+    "version": "1.0.1"
+    ...
+}
+```
 
-
-# Options
+options
 ```
 -i --increment [<level>]
         Increment a version by the specified level.  Level can
@@ -55,6 +61,57 @@ When you iterate over your application, updating the version is a trivial but in
 -e --extra [<value>]
         This is for prerelease extra data
         Such as 'beta','alpha'
+```
+
+## Node
+package.json
+```json
+{
+    ...
+    "version": "1.0.0"
+    ...
+}
+```
+
+index.js
+```javascript
+const autoVers = require('auto-vers');
+
+autoVers({type: 'patch'}); // 1.0.1
+```
+
+```shell
+node index.js
+```
+
+update package.json
+```json
+{
+    ...
+    "version": "1.0.1"
+    ...
+}
+```
+
+options
+
+```
+{
+    type: major | minor | patch | prerelease,
+    url?: package.json's url,
+    extra?: alpha | beta | ...
+}
+```
+# Practices
+It is a good choice to pack and upgrade the version at the same time.
+
+```json
+"script": {
+    "build": "babel ./src --out-dir ./dist && ./bin/auto-vers -i",
+    "build-m": "babel ./src --out-dir ./dist && ./bin/auto-vers -i minor",
+    "build-a": "babel ./src --out-dir ./dist && ./bin/auto-vers -i major",
+    "build-t": "babel ./src --out-dir ./dist && ./bin/auto-vers -i prerelease"
+}
 ```
 
 # License
