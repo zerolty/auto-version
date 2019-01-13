@@ -61,6 +61,8 @@ options
 -e --extra [<value>]
         This is for prerelease extra data
         Such as 'beta','alpha'
+-t --tip
+        Do not update the version directly, you can confirm.
 ```
 
 ## Node

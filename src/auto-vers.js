@@ -1,19 +1,38 @@
 const semver = require('semver');
 const colors = require('colors');
+const { prompt } = require('enquirer');
 
 const {pkgRead, pkgUpdate} = require('./pkg');
 
-function autoVersion({type, extra, url}) {
-    const newVer = updateVersion({type, extra, url});
-    pkgUpdate(url, Object.assign(pkgRead(url), {version: newVer}));
-    return newVer;
+function autoVersion({type, extra, url, confirm}) {
+    const {version, text} = updateVersion({type, extra, url});
+    if(confirm) {
+        const question = {
+            type: 'confirm',
+            name: 'progress',
+            initial: 'yes',
+            message: text
+        };
+        prompt(question)
+            .then(answer => {
+                if(answer.progress) {
+                    pkgUpdate(url, Object.assign(pkgRead(url), {version}));
+                } else {
+                    console.log('cancel');
+                }
+            })
+            .catch(console.error);
+    } else {
+        console.log(text);
+        pkgUpdate(url, Object.assign(pkgRead(url), {version}));
+    }
+    return version;
 }
 
 function updateVersion({type, extra, url, version}) {
     const oldVer = getCurrentVersion(url);
     let newVer = version ? version : getNewVersion(oldVer, type, extra);
-    console.log(`version will update ${oldVer} -> ${newVer}`.red);
-    return newVer;
+    return {version: newVer, text: `version will update ${oldVer} -> ${newVer}`.red};
 }
 
 function getCurrentVersion(url) {

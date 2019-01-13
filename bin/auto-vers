@@ -12,6 +12,8 @@ var type = null
 
 var extra = null
 
+var confirm = null
+
 main()
 function main() {
     if (!argv.length) return help()
@@ -46,6 +48,10 @@ function main() {
             case '-extra':
                 extra = null
                 break
+            case '-t':
+            case '--tip':
+                confirm = true
+                break
             case '-h':
             case '--help':
             case '-?':
@@ -56,13 +62,13 @@ function main() {
         }
     }
     if(versions) {
-        return autoVers({version: versions})
+        return autoVers({version: versions, confirm})
     }
     if(extra && type === 'prerelease') {
-        return autoVers({type: 'prerelease', extra})
+        return autoVers({type: 'prerelease', extra, confirm})
     }
     if(type) {
-        return autoVers({type})
+        return autoVers({type, confirm})
     }
 }
 
@@ -81,5 +87,8 @@ function help() {
     '-e --extra [<value>]',
     '        This is for prerelease extra data',
     "        Such as 'beta','alpha' ",
+    '-t --tip',
+    '        Do not update the version directly, you can confirm. ',
+    '        This is a safe mode. ',
     ].join('\n'));
 }
