@@ -103,14 +103,15 @@ options
 }
 ```
 # Practices
-It is a good choice to pack and upgrade the version at the same time.
+It is a good choice to build your application and upgrade the version at the same time.
 
 ```json
 "script": {
-    "build": "babel ./src --out-dir ./dist && ./bin/auto-vers -i",
-    "build-m": "babel ./src --out-dir ./dist && ./bin/auto-vers -i minor",
-    "build-a": "babel ./src --out-dir ./dist && ./bin/auto-vers -i major",
-    "build-t": "babel ./src --out-dir ./dist && ./bin/auto-vers -i prerelease"
+    "build": "babel ./src --out-dir ./dist",
+    "patch": "npm run build && ./bin/auto-vers -i",
+    "minor": "npm run build && ./bin/auto-vers -i minor",
+    "major": "npm run build && ./bin/auto-vers -i major",
+    "beta": "npm run build && ./bin/auto-vers -i prerelease",
 }
 ```
 

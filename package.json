@@ -7,12 +7,11 @@
     "auto-vers": "./bin/auto-vers"
   },
   "scripts": {
-    "build": "babel ./src --out-dir ./dist && npm run patch",
-    "build-m": "babel ./src --out-dir ./dist && npm run minor",
-    "build-a": "babel ./src --out-dir ./dist && npm run major",
-    "patch": "./bin/auto-vers -i",
-    "minor": "./bin/auto-vers -i minor",
-    "major": "./bin/auto-vers -i major",
+    "build": "babel ./src --out-dir ./dist",
+    "patch": "npm run build && ./bin/auto-vers -i",
+    "minor": "npm run build && ./bin/auto-vers -i minor",
+    "major": "npm run build && ./bin/auto-vers -i major",
+    "beta": "npm run build && ./bin/auto-vers -i prerelease",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha && ./node_modules/.bin/codecov"
   },
   "repository": {
