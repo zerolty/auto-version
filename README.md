@@ -17,7 +17,7 @@ When you iterate over your application, updating the version is a trivial but in
 # Feature
 
 - [x] upgrade major, minor, patch or prerelease
-- [ ] confirm update in cli
+- [x] confirm update in cli
 
 # Usage
 
