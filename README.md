@@ -36,7 +36,7 @@ package.json
 }
 ```
 
-bash 
+bash
 ```
 ./bin/auto-vers -i
 ```
@@ -116,6 +116,10 @@ It is a good choice to build your application and upgrade the version at the sam
     "beta": "npm run build && ./bin/auto-vers -i prerelease",
 }
 ```
+
+open the tip(-t --tip), this is a safe way to update.
+
+![](https://s3.qiufengh.com/github/auto-ver.png)
 
 # License
 
