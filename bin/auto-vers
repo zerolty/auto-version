@@ -14,6 +14,10 @@ var extra = null
 
 var confirm = null
 
+var tip = null
+
+var url = null
+
 main()
 function main() {
     if (!argv.length) return help()
@@ -36,6 +40,9 @@ function main() {
                     case 'major':
                     case 'minor':
                     case 'patch':
+                    case 'premajor':
+                    case 'preminor':
+                    case 'prepatch':
                     case 'prerelease':
                         type = argv.shift()
                         break
@@ -48,9 +55,17 @@ function main() {
             case '-extra':
                 extra = null
                 break
+            case '-p':
+            case '--path':
+                url = argv.shift();
+                break;
+            case '-c':
+            case '--confirm':
+                confirm = true
+                break
             case '-t':
             case '--tip':
-                confirm = true
+                tip = true
                 break
             case '-h':
             case '--help':
@@ -61,15 +76,8 @@ function main() {
                 break
         }
     }
-    if(versions) {
-        return autoVers({version: versions, confirm})
-    }
-    if(extra && type === 'prerelease') {
-        return autoVers({type: 'prerelease', extra, confirm})
-    }
-    if(type) {
-        return autoVers({type, confirm})
-    }
+
+    return autoVers({version: versions, type, extra, confirm, tip, url})
 }
 
 function help() {
@@ -81,13 +89,13 @@ function help() {
     'Options',
     '-i --increment [<level>]',
     '        Increment a version by the specified level.  Level can',
-    '        be one of: major, minor, patch or prerelease.',
-    "        Default level is 'patch'.",
+    '        be one of: major, minor, patch, premajor, preminor',
+    "        , prepatch or prerelease. Default level is 'patch'.",
     '        Only one version may be specified.',
     '-e --extra [<value>]',
     '        This is for prerelease extra data',
     "        Such as 'beta','alpha' ",
-    '-t --tip',
+    '-c --confirm',
     '        Do not update the version directly, you can confirm. ',
     '        This is a safe mode. ',
     ].join('\n'));

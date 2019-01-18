@@ -1,6 +1,6 @@
 const path = require('path');
 const assert = require('chai').assert;
-const autoVersion = require('../src/auto-vers');
+const {autoVersion} = require('../src/auto-vers');
 const {pkgUpdate, pkgRead} = require('../src/pkg');
 
 describe('version test', () => {

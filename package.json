@@ -1,6 +1,6 @@
 {
   "name": "auto-vers",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "./dist/index.js",
   "bin": {
@@ -12,6 +12,7 @@
     "minor": "npm run build && ./bin/auto-vers -i minor",
     "major": "npm run build && ./bin/auto-vers -i major",
     "beta": "npm run build && ./bin/auto-vers -i prerelease",
+    "tip": "./bin/auto-vers -t",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha && ./node_modules/.bin/codecov"
   },
   "repository": {
@@ -35,6 +36,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "codecov": "^3.1.0",
+    "inquirer-test": "^2.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0"
   }

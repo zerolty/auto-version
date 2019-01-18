@@ -1,3 +1,3 @@
-const autoVers = require('./auto-vers');
+const {autoVersion} = require('./auto-vers');
 
-module.exports = autoVers;
+module.exports = autoVersion;
