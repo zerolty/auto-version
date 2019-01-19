@@ -69,7 +69,7 @@ cat package.json
 ```
 ![auto-vers-tip1.gif](https://s3.qiufengh.com/blog/auto-vers-tip1.gif)
 
-
+If you don't want to update , you can enter `ctrl` + `c` to exit program 
 
 ### Direct
 
