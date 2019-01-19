@@ -1,6 +1,6 @@
 {
   "name": "auto-vers",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "",
   "main": "./dist/index.js",
   "bin": {
@@ -13,7 +13,8 @@
     "major": "npm run build && ./bin/auto-vers -i major",
     "beta": "npm run build && ./bin/auto-vers -i prerelease",
     "tip": "./bin/auto-vers -t",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha && ./node_modules/.bin/codecov"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha && ./node_modules/.bin/codecov",
+    "tag": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION && git push --tags"
   },
   "repository": {
     "type": "git",
