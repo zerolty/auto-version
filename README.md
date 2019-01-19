@@ -23,13 +23,16 @@ When you iterate over your application, updating the version is a trivial but in
 # Usage
 
 ```shell
-npm i auto-vers
+npm i auto-vers -g 
 ```
 
 ## Cli
 
-package.json
-```json
+### Base 
+
+
+```shell
+cat package.json
 {
     ...
     "version": "1.0.0"
@@ -37,20 +40,48 @@ package.json
 }
 ```
 
-bash
 ```
 ./bin/auto-vers -i
 ```
 
 
-package.json
 ```json
+cat package.json
 {
     ...
     "version": "1.0.1"
     ...
 }
 ```
+
+### Confirm 
+
+```
+./bin/auto-vers -i -c
+```
+![auto-vers-confirm.gif](https://s3.qiufengh.com/blog/auto-vers-confirm.gif)
+
+
+### Tip 
+
+```
+./bin/auto-vers -t
+```
+![auto-vers-tip.gif](https://s3.qiufengh.com/blog/auto-vers-tip.gif)
+
+
+### Direct
+
+```
+./bin/auto-vers 1.2.0 
+```
+or 
+```
+./bin/auto-vers -v 1.2.0 
+```
+![auto-vers-direct.gif](https://s3.qiufengh.com/blog/auto-vers-direct.gif)
+
+
 
 options
 ```
@@ -78,6 +109,10 @@ Options
 ```
 
 ## Node
+```shell
+npm i auto-vers
+```
+
 package.json
 ```json
 {
@@ -130,9 +165,15 @@ It is a good choice to build your application and upgrade the version at the sam
 }
 ```
 
-open the tip(-t --tip), this is a safe way to update.
+open the tip(-c --confirm), this is a safe way to update.
 
-![](https://s3.qiufengh.com/github/auto-ver.png)
+
+
+# Instruction 
+
+**Weights**: version > tip > increment
+
+**increment-related**: confirm, extra
 
 # License
 
