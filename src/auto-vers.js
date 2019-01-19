@@ -2,10 +2,15 @@ const semver = require('semver');
 const colors = require('colors');
 const { prompt, Select } = require('enquirer');
 const global = require('./global');
+const { exec } = require('child_process');
 
 const {pkgRead, pkgUpdate} = require('./pkg');
 
-function autoVersion({version, type, extra, url, confirm, tip}) {
+function autoVersion({version, type, extra, url, confirm, tip, git}) {
+    if(git) {
+        handleGit(url);
+        return;
+    }
     if(version) {
         pkgUpdate(url, Object.assign(pkgRead(url), {version}));
         return version;
@@ -61,6 +66,16 @@ function autoVersion({version, type, extra, url, confirm, tip}) {
         pkgUpdate(url, Object.assign(pkgRead(url), {version: newVer}));
     }
     return newVer;
+}
+
+function handleGit(url) {
+    const version = pkgRead(url).version;
+    exec(`git tag v${version} && git push --tags`, (error, stdout, stderr) => {
+        if (error) { 
+          console.error(`[Error]: ${error}`);
+          return;
+        }
+    });
 }
 
 function tipType(type, oldVer, newVer) {

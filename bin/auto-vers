@@ -18,6 +18,8 @@ var tip = null
 
 var url = null
 
+var git = null
+
 main()
 function main() {
     if (!argv.length) return help()
@@ -67,6 +69,10 @@ function main() {
             case '--tip':
                 tip = true
                 break
+            case '-g':
+            case '--git':
+                git = true
+                break
             case '-h':
             case '--help':
             case '-?':
@@ -77,7 +83,7 @@ function main() {
         }
     }
 
-    return autoVers({version: versions, type, extra, confirm, tip, url})
+    return autoVers({version: versions, type, extra, confirm, tip, url, git})
 }
 
 function help() {
@@ -102,6 +108,8 @@ function help() {
     '        This is a safe mode. ',
     '-t --tip',
     `        Provide choice to you. If you don't know how to update`,
-    '        you can choose this option',
+    '        you can choose this option.',
+    '-g --git',
+    '        Help you make a tag.',
     ].join('\n'));
 }

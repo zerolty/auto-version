@@ -86,16 +86,16 @@ or
 
 options
 ```
-auto-vers 0.2.0
+auto-vers 0.3.1
 
 Auto update version for your application
 Usage: auto-vers [options] <version> [[...]]
 
 Options
 -v --version <version>
-        Can change version directly.
+        Can update version directly.
 -i --inc --increment [<level>]
-        Increment a version by the specified level.  Level can
+        Increment a version by the specified level. Level can
         be one of: major, minor, patch, premajor, preminor
         , prepatch or prerelease. Default level is 'patch'.
         Only one version may be specified.
@@ -106,7 +106,10 @@ Options
         Do not update the version directly, you can confirm.
         This is a safe mode.
 -t --tip
-        Provide choice to you.
+        Provide choice to you. If you don't know how to update
+        you can choose this option.
+-g --git
+        update the version will also help you make a tag.
 ```
 
 ## Node
