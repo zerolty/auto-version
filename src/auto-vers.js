@@ -1,6 +1,7 @@
 const semver = require('semver');
 const colors = require('colors');
 const { prompt, Select } = require('enquirer');
+const global = require('./global');
 
 const {pkgRead, pkgUpdate} = require('./pkg');
 
@@ -10,7 +11,31 @@ function autoVersion({version, type, extra, url, confirm, tip}) {
         return version;
     }
     if(tip) {
-        tipToUpdate({extra, url});
+        const [list, preList] = tipToUpdate({extra, url});
+        const prompt = new Select({
+            name: 'version',
+            message: 'Update to version',
+            choices: list
+        });
+          
+        prompt.run()
+            .then(answer => {
+                if(answer === 'prerelease') {
+                    const prerPompt = new Select({
+                        name: 'pre-version',
+                        message: 'Update to pre-version',
+                        choices: preList 
+                    })
+                    prerPompt.run()
+                        .then(res => {
+                            pkgUpdate(url, Object.assign(pkgRead(url), {version: res}));
+                        })
+                        .catch(console.error);
+                } else {
+                    pkgUpdate(url, Object.assign(pkgRead(url), {version: answer}));
+                }
+            })
+            .catch(console.error);
         return;
     }
     const {oldVer, newVer} = updateVersion({type, extra, url});
@@ -42,25 +67,13 @@ function tipType(type, oldVer, newVer) {
     let text = '';
     switch (type) {
         case 'major':
-            text = `[major] Breaking Changes or Refactor code.`;
-            break;
         case 'minor':
-            text = `[minor] Some new feature or some function.`;
-            break;
         case 'patch':
-            text = `[patch] Fix bug or little change.`;
-            break;
         case 'premajor':
-            text = `[premajor] Major revision for test.`;
-            break;
         case 'preminor':
-            text = `[preminor] Minor revision for test.`;
-            break;
         case 'prepatch':
-            text = `[prepatch] Don't suggest it.`;
-            break;
         case 'prerelease':
-            text = `[prerelease] Update test version.`;
+            text = `[${type}] ${global[type.toUpperCase()]}`;
             break;
         default:
             return 'prerelease';
@@ -94,30 +107,7 @@ function tipToUpdate({extra, url}) {
     });
     preList.push(...preArr);
     
-    const prompt = new Select({
-        name: 'version',
-        message: 'Update to version',
-        choices: list
-    });
-      
-    prompt.run()
-        .then(answer => {
-            if(answer === 'prerelease') {
-                const prerPompt = new Select({
-                    name: 'pre-version',
-                    message: 'Update to pre-version',
-                    choices: preList 
-                })
-                prerPompt.run()
-                    .then(res => {
-                        pkgUpdate(url, Object.assign(pkgRead(url), {version: res}));
-                    })
-                    .catch(console.error);
-            } else {
-                pkgUpdate(url, Object.assign(pkgRead(url), {version: answer}));
-            }
-        })
-        .catch(console.error);
+    return [list, preList];
 }
 
 function updateVersion({type, extra, url, version}) {
@@ -163,5 +153,6 @@ function getNewVersion(oldVer, type, extra) {
 module.exports = {
     autoVersion,
     getNewVersion,
-    getCurrentVersion
+    getCurrentVersion,
+    tipToUpdate
 };

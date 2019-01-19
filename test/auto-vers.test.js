@@ -1,6 +1,7 @@
 const path = require('path');
 const assert = require('chai').assert;
-const {autoVersion} = require('../src/auto-vers');
+const {autoVersion, tipToUpdate} = require('../src/auto-vers');
+const global = require('../src/global');
 const {pkgUpdate, pkgRead} = require('../src/pkg');
 
 describe('version test', () => {
@@ -79,5 +80,14 @@ describe('version test', () => {
 
         const pkg = pkgRead(curPath);
         pkgUpdate(curPath, Object.assign(pkg, {version: '1.0.0-alpha.1'}));
+    })
+
+    it('tip type text', () => {
+        const curPath = path.join(__dirname, './package.json');
+        const result = tipToUpdate({url: curPath});
+
+        const expect = `[[{"message":"[patch] ${global.PATCH}(1.0.0 -> 1.0.1)","value":"1.0.1"},{"message":"[minor] ${global.MINOR}(1.0.0 -> 1.1.0)","value":"1.1.0"},{"message":"[major] ${global.MAJOR}(1.0.0 -> 2.0.0)","value":"2.0.0"},{"message":"prerelease","value":"prerelease"}],[{"message":"[premajor] ${global.PREMAJOR}(1.0.0 -> 2.0.0-bata.0)","value":"2.0.0-bata.0"},{"message":"[preminor] ${global.PREMINOR}(1.0.0 -> 1.1.0-bata.0)","value":"1.1.0-bata.0"},{"message":"[prepatch] ${global.PREPATCH}(1.0.0 -> 1.0.1-bata.0)","value":"1.0.1-bata.0"},{"message":"[prerelease] ${global.PRERELEASE}(1.0.0 -> 1.0.1-bata.0)","value":"1.0.1-bata.0"}]]`;
+
+        assert.equal(JSON.stringify(result), expect);
     })
 })

@@ -1,11 +1,12 @@
 const path = require('path');
 const {expect} = require('chai');
 const run = require('inquirer-test');
+const global = require('../src/global');
 const {pkgUpdate, pkgRead} = require('../src/pkg');
 
 const { UP, DOWN, ENTER } = run;
 
-const STATIC_Q = '\u001b[?25l\u001b[36m?\u001b[39m \u001b[1mUpdate to version\u001b[22m \u001b[2m…\u001b[22m \n\u001b[36m❯\u001b[39m \u001b[36m\u001b[4m[patch] Fix bug or little change.(1.0.0 -> 1.0.1)\u001b[24m\u001b[39m\n  [minor] Some new feature or some function.(1.0.0 -> 1.1.0)\n  [major] Breaking Changes or Refactor code.(1.0.0 -> 2.0.0)\n  prerelease';
+const STATIC_Q = `\u001b[?25l\u001b[36m?\u001b[39m \u001b[1mUpdate to version\u001b[22m \u001b[2m…\u001b[22m \n\u001b[36m❯\u001b[39m \u001b[36m\u001b[4m[patch] ${global.PATCH}(1.0.0 -> 1.0.1)\u001b[24m\u001b[39m\n  [minor] ${global.MINOR}(1.0.0 -> 1.1.0)\n  [major] ${global.MAJOR}(1.0.0 -> 2.0.0)\n  prerelease`;
 
 const OLD_VER = '1.0.0';
 

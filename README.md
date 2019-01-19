@@ -53,16 +53,27 @@ package.json
 
 options
 ```
--i --increment [<level>]
+auto-vers 0.2.0
+
+Auto update version for your application
+Usage: auto-vers [options] <version> [[...]]
+
+Options
+-v --version <version>
+        Can change version directly.
+-i --inc --increment [<level>]
         Increment a version by the specified level.  Level can
-        be one of: major, minor, patch or prerelease.
-        Default level is 'patch'.
+        be one of: major, minor, patch, premajor, preminor
+        , prepatch or prerelease. Default level is 'patch'.
         Only one version may be specified.
 -e --extra [<value>]
         This is for prerelease extra data
         Such as 'beta','alpha'
 -c --confirm
         Do not update the version directly, you can confirm.
+        This is a safe mode.
+-t --tip
+        Provide choice to you.
 ```
 
 ## Node
@@ -99,6 +110,7 @@ options
 
 ```
 {
+    version?: <version>,
     type: major | minor | patch | prerelease,
     url?: package.json's url,
     extra?: alpha | beta | ...
