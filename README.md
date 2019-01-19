@@ -67,7 +67,8 @@ cat package.json
 ```
 ./bin/auto-vers -t
 ```
-![auto-vers-tip.gif](https://s3.qiufengh.com/blog/auto-vers-tip.gif)
+![auto-vers-tip1.gif](https://s3.qiufengh.com/blog/auto-vers-tip1.gif)
+
 
 
 ### Direct
