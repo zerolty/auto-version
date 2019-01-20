@@ -1,0 +1,7 @@
+#!/bin/sh
+
+exec < /dev/tty
+
+auto-vers -t
+
+git add package.json

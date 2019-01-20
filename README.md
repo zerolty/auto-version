@@ -16,9 +16,10 @@ When you iterate over your application, updating the version is a trivial but in
 
 # Feature
 
-- [x] upgrade major, minor, patch or prerelease
-- [x] confirm update in cli
-- [x] combine with git hooks
+- [x] Update major, minor, patch or prerelease
+- [x] Confirm update in cli
+- [x] Support git tag
+- [ ] According to the recommended version of git commit
 
 # Usage
 
@@ -41,7 +42,7 @@ cat package.json
 ```
 
 ```
-./bin/auto-vers -i
+auto-vers -i
 ```
 
 
@@ -57,7 +58,7 @@ cat package.json
 ### Confirm 
 
 ```
-./bin/auto-vers -i -c
+auto-vers -i -c
 ```
 ![auto-vers-confirm.gif](https://s3.qiufengh.com/blog/auto-vers-confirm.gif)
 
@@ -65,7 +66,7 @@ cat package.json
 ### Tip 
 
 ```
-./bin/auto-vers -t
+auto-vers -t
 ```
 ![auto-vers-tip1.gif](https://s3.qiufengh.com/blog/auto-vers-tip1.gif)
 
@@ -74,11 +75,11 @@ If you don't want to update , you can enter `ctrl` + `c` to exit program
 ### Direct
 
 ```
-./bin/auto-vers 1.2.0 
+auto-vers 1.2.0 
 ```
 or 
 ```
-./bin/auto-vers -v 1.2.0 
+auto-vers -v 1.2.0 
 ```
 ![auto-vers-direct.gif](https://s3.qiufengh.com/blog/auto-vers-direct.gif)
 
@@ -157,20 +158,46 @@ options
 }
 ```
 # Practices
-It is a good choice to build your application and upgrade the version at the same time.
+
+> It is a good choice to build your application and upgrade the version at the same time.
+
+## Primary
 
 ```json
 "script": {
     "build": "babel ./src --out-dir ./dist",
-    "patch": "npm run build && ./bin/auto-vers -i",
-    "minor": "npm run build && ./bin/auto-vers -i minor",
-    "major": "npm run build && ./bin/auto-vers -i major",
-    "beta": "npm run build && ./bin/auto-vers -i prerelease",
+    "tip": "npm run build && auto-vers -t",
+}
+```
+
+## Intermediate
+
+```json
+"script": {
+    "build": "babel ./src --out-dir ./dist",
+    "patch": "npm run build && auto-vers -i -c",
+    "minor": "npm run build && auto-vers -i minor -c",
+    "major": "npm run build && auto-vers -i major -c",
+    "beta": "npm run build && auto-vers -i prerelease -c",
 }
 ```
 
 open the tip(-c --confirm), this is a safe way to update.
 
+## Advanced
+
+If you don't register pre-commit && post-commit, you can move directly.
+
+```
+mv githook-*/*  .git/hooks/
+```
+
+Git hooks exist.
+
+```
+cat githook-*/pre-commit >> .git/hooks/pre-commit
+cat githook-*/post-commit >> .git/hooks/post-commit
+```
 
 
 # Instruction 
