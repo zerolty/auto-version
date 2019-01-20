@@ -87,7 +87,7 @@ auto-vers -v 1.2.0
 
 options
 ```
-auto-vers 0.3.1
+auto-vers 1.0.0
 
 Auto update version for your application
 Usage: auto-vers [options] <version> [[...]]
@@ -110,7 +110,7 @@ Options
         Provide choice to you. If you don't know how to update
         you can choose this option.
 -g --git
-        update the version will also help you make a tag.
+        Help you make a tag.(Make you have a git repo)
 ```
 
 ## Node

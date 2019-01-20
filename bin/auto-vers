@@ -110,6 +110,6 @@ function help() {
     `        Provide choice to you. If you don't know how to update`,
     '        you can choose this option.',
     '-g --git',
-    '        Help you make a tag.',
+    '        Help you make a tag.(Make you have a git repo)',
     ].join('\n'));
 }
