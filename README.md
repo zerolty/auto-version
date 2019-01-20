@@ -72,6 +72,14 @@ auto-vers -t
 
 If you don't want to update , you can enter `ctrl` + `c` to exit program 
 
+### Tip && Git
+
+You can select a verison. And then will commit a tag && make a tag  && push tag.
+
+```
+auto-vers -t -g 
+```
+
 ### Direct
 
 ```
