@@ -99,7 +99,7 @@ auto-vers -v 1.2.0
 
 options
 ```
-auto-vers 1.0.0
+auto-vers 1.0.2
 
 Auto update version for your application
 Usage: auto-vers [options] <version> [[...]]

@@ -84,7 +84,7 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
 }
 
 function grenrateCmd(version) {
-    return `git add package.json && git ci --no-verify -m "v${version}" && git tag v${version} && git push origin v${version}`
+    return `git add package.json && git commit --no-verify -m "v${version}" && git tag v${version} && git push origin v${version}`
 }
 
 function handleGit(command) {
