@@ -201,6 +201,10 @@ cat githook-*/pre-commit >> .git/hooks/pre-commit
 cat githook-*/post-commit >> .git/hooks/post-commit
 ```
 
+**Tip:**
+> 1.This is normal if you don't have an updated version. (Tag 'vx.x.x' already exists. If you have not chosen to update, ignore this msg.)
+
+> 2.Because it automatically pushes you when you tag, there will be a network delay. Please ensure that you execute this command in a network. If you can't accept this behavior, you can cancel the post-commit and add it in the npm script ("tag": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag $PACKAGE_VERSION").
 
 # Instruction 
 
