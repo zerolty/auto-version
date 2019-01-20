@@ -179,6 +179,15 @@ open the tip(-c --confirm), this is a safe way to update.
 
 **increment-related**: confirm, extra
 
+# About
+
+<details>
+<summary><strong>Contributing</strong></summary>
+
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
+
+</details>
+
 # License
 
 MIT
