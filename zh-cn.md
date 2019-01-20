@@ -74,7 +74,7 @@ auto-vers -t
 ```
 ![auto-vers-tip1.gif](https://s3.qiufengh.com/blog/auto-vers-tip1.gif)
 
-If you don't want to update , you can enter `ctrl` + `c` to exit program 
+如果你不想更新 , 你可以使用 `ctrl` + `c` 去停止。
 
 ### 提示和Git
 
@@ -179,6 +179,7 @@ options
 "script": {
     "build": "babel ./src --out-dir ./dist",
     "tip": "npm run build && auto-vers -t",
+    "version": "npm run build && auto-vers -t -g",
 }
 ```
 
@@ -194,7 +195,7 @@ options
 }
 ```
 
-open the tip(-c --confirm), this is a safe way to update.
+用安全的方式去升级 增加参数-c --confirm
 
 ## 高级的
 
@@ -229,7 +230,7 @@ cat githook-*/pre-commit >> .git/hooks/pre-commit
 <details>
 <summary><strong>贡献</strong></summary>
 
-欢迎你提交pr以及star本项目，如果有bug或者有功能问题请移步这里 [please create an issue](../../issues/new).
+欢迎你提交pr以及star本项目，如果有bug或者有功能问题请移步这里 [please create an issue](../../issues/new).
 
 </details>
 
