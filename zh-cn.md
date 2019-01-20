@@ -171,9 +171,9 @@ options
 ```
 # 最佳实践
 
-> 在你打包完你的项目后，运行这个命令是一个非常好的选择。
+> 在你打包完你的项目同时运行这个命令是一个非常好的选择。
 
-## 初级的
+## 基础的方式
 
 ```json
 "script": {
@@ -183,7 +183,9 @@ options
 }
 ```
 
-## 中级的
+在你写好一段打包命令后，紧接着跟上`auto-vers -t`，将会给你提示需要升级至多少版本，这对你来说会有一定的指示意义。帮助你更好地区判断你需要升级至什么版本。`auto-vers -t -g` 这个命令适合于你单独发布一个版本，可以一键式的帮助你从修改 package.json -> git commit -> git tag -> git push origin [tagname] 整个流程。
+
+## 中级的方式
 
 ```json
 "script": {
@@ -195,13 +197,13 @@ options
 }
 ```
 
-用安全的方式去升级 增加参数-c --confirm
+这个方式针对熟悉这个模式的人，每次需要打包只需要执行对应的命令。(增加参数`-c --confirm`,这是一个安全的方式去升级，帮助你确认是否升级正确，如果对你而言是一个繁琐的步骤即可去掉。）
 
-## 高级的
+## 高级的方式
 
 `git-hooks`
 
-如果你没有注册pre-commit和post-commit，可以直接移动进你的.git/hooks目录下
+如果你没有注册`pre-commit`和`post-commit`，可以直接移动进你的.git/hooks目录下
 
 ```
 mv githook-*/*  .git/hooks/
@@ -213,11 +215,7 @@ mv githook-*/*  .git/hooks/
 cat githook-*/pre-commit >> .git/hooks/pre-commit
 ```
 
-在你提commit后，可以运行 `auto-vers -g` 生成一个tag.
-
-**Tip:**
-
-> 如果你使用-g,--git选项，可能会有延迟，因为他会将tag提交到远端,所以请保证有网络情况下使用这个命令。
+当你提交 commit 的时候，会自动跳出选择界面，选择后升级对应的版本。 （注意：如果在你的程序中有相关 commit 命令，请使用`--no-verify`来跳过此钩子，否则将循环调用）
 
 # 说明
 

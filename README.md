@@ -171,7 +171,7 @@ options
 ```
 # Practices
 
-> It is a good choice to build your application and upgrade the version at the same time.
+> It is a good choice to build your application and update the version at the same time.
 
 ## Primary
 
@@ -181,6 +181,7 @@ options
     "tip": "npm run build && auto-vers -t",
 }
 ```
+After you write a package command, followed by `auto-vers -t`, you will be prompted what versions you need to update, which will have some indication for you. Help you better judge what version you need to update to. `auto-vers -t -g` This command is suitable for you to release a separate version, which can help you modify the package.json -> git commit -> git tag -> git push origin [tagname] from the whole process.
 
 ## Intermediate
 
@@ -193,8 +194,7 @@ options
     "beta": "npm run build && auto-vers -i prerelease -c",
 }
 ```
-
-open the tip(-c --confirm), this is a safe way to update.
+This method is for people who are familiar with this mode, and only need to execute the corresponding command each time they need to package. (Increase the parameter `-c --confirm`, this is a safe way to update, to help you confirm whether the update is correct, if it is a cumbersome step for you to remove.)
 
 ## Advanced
 
@@ -212,7 +212,7 @@ Git hooks exist.
 cat githook-*/pre-commit >> .git/hooks/pre-commit
 ```
 
-After commit, you can run `auto-vers -g` to make a tag.
+When you commit the 'commit', it will automatically pop out of the selection interface, select and update the corresponding version. (Note: If there is a related commit command in your program, use `--no-verify` to skip this hook, otherwise it will be called in a loop)
 
 **Tip:**
 
