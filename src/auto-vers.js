@@ -70,7 +70,7 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
 
 function handleGit(url) {
     const version = pkgRead(url).version;
-    exec(`git tag v${version} && git push --tags`, (error, stdout, stderr) => {
+    exec(`git tag v${version} && git push origin v${version}`, (error, stdout, stderr) => {
         if (error) { 
           console.error(`[Error]: ${error}`);
           return;
