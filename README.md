@@ -18,7 +18,7 @@ When you iterate over your application, updating the version is a trivial but in
 
 - [x] upgrade major, minor, patch or prerelease
 - [x] confirm update in cli
-- [ ] combine with git hooks
+- [x] combine with git hooks
 
 # Usage
 
