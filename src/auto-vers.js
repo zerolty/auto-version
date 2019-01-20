@@ -8,16 +8,13 @@ const {pkgRead, pkgUpdate} = require('./pkg');
 
 function autoVersion({version, type, extra, url, confirm, tip, git}) {
     const pkgValue = pkgRead(url);
-    if(git) {
-        const command = `git add package.json && git ci --no-verify -m "v${pkgValue.version}" && git tag v${pkgValue.version} && git push origin v${pkgValue.version}`
-        handleGit(command);
-        return;
-    }
     if(version) {
         pkgUpdate(url, Object.assign(pkgValue, {version}));
+        if(git) {
+            handleGit(grenrateCmd(version));
+        }
         return version;
-    }
-    if(tip) {
+    } else if (tip) {
         const [list, preList] = tipToUpdate({extra, url});
         const prompt = new Select({
             name: 'version',
@@ -36,10 +33,16 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
                     prerPompt.run()
                         .then(res => {
                             pkgUpdate(url, Object.assign(pkgValue, {version: res}));
+                            if(git) {
+                                handleGit(grenrateCmd(res));
+                            }
                         })
                         .catch(console.error);
                 } else {
                     pkgUpdate(url, Object.assign(pkgValue, {version: answer}));
+                    if(git) {
+                        handleGit(grenrateCmd(answer));
+                    }
                 }
             })
             .catch(console.error);
@@ -58,16 +61,30 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
             .then(answer => {
                 if(answer.progress) {
                     pkgUpdate(url, Object.assign(pkgValue, {version: newVer}));
+                    if(git) {
+                        handleGit(grenrateCmd(version));
+                    }
                 } else {
                     console.log('cancel');
                 }
             })
             .catch(console.error);
-    } else {
+    } else if (type) {
         console.log(text);
         pkgUpdate(url, Object.assign(pkgValue, {version: newVer}));
+        if(git) {
+            handleGit(grenrateCmd(newVer));
+        }
+    } else if(git) {
+        const command = `git tag v${pkgValue.version} && git push origin v${pkgValue.version}`
+        handleGit(command);
     }
+    
     return newVer;
+}
+
+function grenrateCmd(version) {
+    return `git add package.json && git ci --no-verify -m "v${version}" && git tag v${version} && git push origin v${version}`
 }
 
 function handleGit(command) {
