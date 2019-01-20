@@ -45,7 +45,7 @@ cat package.json
 ```
 
 
-```json
+```shell
 cat package.json
 {
     ...
