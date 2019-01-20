@@ -8,24 +8,24 @@
     <a href="https://www.npmjs.com/package/auto-vers" rel="nofollow"><img src="https://img.shields.io/npm/l/auto-vers.svg?style=flat" style="max-width:100%;"></a>
 </p>
 
-# Language
+# 语言
 
 [中文版](./zh-cn.md) [English](./README.md)
 
-**Auto update version for your application**
+**自动帮你的应用更新版本**
 
-> auto-vers is helpful to your work. It will auto update package version when build your application.
+> auto-vers对你的工作很有帮助。 它将在构建应用程序时自动更新软件包版本。
 
-When you iterate over your application, updating the version is a trivial but indispensable little thing. You can run it while packaging your app, and then will do more with less.
+当在迭代版本的时候，更新版本是一件微不足道但却不可或缺的小事。 你可以在打包应用程序时运行它，不需要花更多的时间来完成这件事。
 
-# Feature
+# 功能
 
-- [x] Update major, minor, patch or prerelease
-- [x] Confirm update in cli
-- [x] Support git tag
-- [ ] According to the recommended version of git commit
+- [x] 更新 major, minor, patch or prerelease
+- [x] 在cli的时候确认信息
+- [x] 支持git打包方式
+- [ ] 根据git commit的信息来自动推荐合适的版本
 
-# Usage
+# 使用
 
 ```shell
 npm i auto-vers -g 
@@ -33,7 +33,7 @@ npm i auto-vers -g
 
 ## Cli
 
-### Base 
+### 基础
 
 
 ```shell
@@ -59,7 +59,7 @@ cat package.json
 }
 ```
 
-### Confirm 
+### 确认
 
 ```
 auto-vers -i -c
@@ -67,7 +67,7 @@ auto-vers -i -c
 ![auto-vers-confirm.gif](https://s3.qiufengh.com/blog/auto-vers-confirm.gif)
 
 
-### Tip 
+### 提示 
 
 ```
 auto-vers -t
@@ -76,15 +76,15 @@ auto-vers -t
 
 If you don't want to update , you can enter `ctrl` + `c` to exit program 
 
-### Tip && Git
+### 提示和Git
 
-You can select a verison. And then will commit a tag && make a tag  && push tag.
+使用这个选项后，在你选择一个版本后，会自动帮你提交一个commit，并且打上一个tag。
 
 ```
 auto-vers -t -g 
 ```
 
-### Direct
+### 直接修改
 
 ```
 auto-vers 1.2.0 
@@ -169,11 +169,11 @@ options
     extra?: alpha | beta | ...
 }
 ```
-# Practices
+# 最佳实践
 
-> It is a good choice to build your application and upgrade the version at the same time.
+> 在你打包完你的项目后，运行这个命令是一个非常好的选择。
 
-## Primary
+## 初级的
 
 ```json
 "script": {
@@ -182,7 +182,7 @@ options
 }
 ```
 
-## Intermediate
+## 中级的
 
 ```json
 "script": {
@@ -196,44 +196,44 @@ options
 
 open the tip(-c --confirm), this is a safe way to update.
 
-## Advanced
+## 高级的
 
 `git-hooks`
 
-If you have not registered pre-commit && post-commit, please move directly.
+如果你没有注册pre-commit和post-commit，可以直接移动进你的.git/hooks目录下
 
 ```
 mv githook-*/*  .git/hooks/
 ```
 
-Git hooks exist.
+如果你本地存在hooks，将项目下的hook，手动添加到你的hook下
 
 ```
 cat githook-*/pre-commit >> .git/hooks/pre-commit
 ```
 
-After commit, you can run `auto-vers -g` to make a tag.
+在你提commit后，可以运行 `auto-vers -g` 生成一个tag.
 
 **Tip:**
 
-> Because it automatically pushes you when you tag, there will be a network delay. Please ensure that you execute this command in a network.
+> 如果你使用-g,--git选项，可能会有延迟，因为他会将tag提交到远端,所以请保证有网络情况下使用这个命令。
 
-# Instruction 
+# 说明
 
-**Weights**: version > tip > increment
+**权重**: version > tip > increment
 
-**increment-related**: confirm, extra
+**自增的额外参数**: confirm, extra
 
-# About
+# 关于
 
 <details>
-<summary><strong>Contributing</strong></summary>
+<summary><strong>贡献</strong></summary>
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
+欢迎你提交pr以及star本项目，如果有bug或者有功能问题请移步这里 [please create an issue](../../issues/new).
 
 </details>
 
-# License
+# 证书
 
 MIT
 
