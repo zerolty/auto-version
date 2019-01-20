@@ -7,12 +7,14 @@ const { exec } = require('child_process');
 const {pkgRead, pkgUpdate} = require('./pkg');
 
 function autoVersion({version, type, extra, url, confirm, tip, git}) {
+    const pkgValue = pkgRead(url);
     if(git) {
-        handleGit(url);
+        const command = `git add package.json && git ci --no-verify -m "v${pkgValue.version}" && git tag v${pkgValue.version} && git push origin v${pkgValue.version}`
+        handleGit(command);
         return;
     }
     if(version) {
-        pkgUpdate(url, Object.assign(pkgRead(url), {version}));
+        pkgUpdate(url, Object.assign(pkgValue, {version}));
         return version;
     }
     if(tip) {
@@ -33,11 +35,11 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
                     })
                     prerPompt.run()
                         .then(res => {
-                            pkgUpdate(url, Object.assign(pkgRead(url), {version: res}));
+                            pkgUpdate(url, Object.assign(pkgValue, {version: res}));
                         })
                         .catch(console.error);
                 } else {
-                    pkgUpdate(url, Object.assign(pkgRead(url), {version: answer}));
+                    pkgUpdate(url, Object.assign(pkgValue, {version: answer}));
                 }
             })
             .catch(console.error);
@@ -55,7 +57,7 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
         prompt(question)
             .then(answer => {
                 if(answer.progress) {
-                    pkgUpdate(url, Object.assign(pkgRead(url), {version: newVer}));
+                    pkgUpdate(url, Object.assign(pkgValue, {version: newVer}));
                 } else {
                     console.log('cancel');
                 }
@@ -63,21 +65,15 @@ function autoVersion({version, type, extra, url, confirm, tip, git}) {
             .catch(console.error);
     } else {
         console.log(text);
-        pkgUpdate(url, Object.assign(pkgRead(url), {version: newVer}));
+        pkgUpdate(url, Object.assign(pkgValue, {version: newVer}));
     }
     return newVer;
 }
 
-function handleGit(url) {
-    const version = pkgRead(url).version;
-    exec(`git tag v${version} && git push origin v${version}`, (error, stdout, stderr) => {
+function handleGit(command) {
+    exec(command, (error, stdout, stderr) => {
         if (error) { 
-            const msg = error.toString();
-            if(msg.includes('already exists')) {
-                console.log(`Tag 'v${version}' already exists. If you have not chosen to update, ignore this msg.`)
-            } else {
-                console.error(`[Error]: ${error}`);
-            }
+            console.error(`[Error]: ${error}`);
             return;
         }
     });
