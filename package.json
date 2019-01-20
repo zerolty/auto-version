@@ -1,6 +1,6 @@
 {
   "name": "auto-vers",
-  "version": "0.4.2",
+  "version": "0.4.4",
   "description": "",
   "main": "./dist/index.js",
   "bin": {
