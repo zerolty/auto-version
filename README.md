@@ -186,7 +186,9 @@ open the tip(-c --confirm), this is a safe way to update.
 
 ## Advanced
 
-If you don't register pre-commit && post-commit, you can move directly.
+`git-hooks`
+
+If you have not registered pre-commit && post-commit, please move directly.
 
 ```
 mv githook-*/*  .git/hooks/
