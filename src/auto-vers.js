@@ -72,8 +72,13 @@ function handleGit(url) {
     const version = pkgRead(url).version;
     exec(`git tag v${version} && git push origin v${version}`, (error, stdout, stderr) => {
         if (error) { 
-          console.error(`[Error]: ${error}`);
-          return;
+            const msg = error.toString();
+            if(msg.includes('already exists')) {
+                console.log(`Tag 'v${version}' already exists. If you have not chosen to update, ignore this msg.`)
+            } else {
+                console.error(`[Error]: ${error}`);
+            }
+            return;
         }
     });
 }
