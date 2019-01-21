@@ -18,6 +18,10 @@
 
 当在迭代版本的时候，更新版本是一件微不足道但却不可或缺的小事。 你可以在打包应用程序时运行它，不需要花更多的时间来完成这件事。
 
+# 介绍文章
+
+[pkg版本规范管理自动化最佳实践](https://juejin.im/post/5c4454146fb9a04a0164a289#heading-17)
+
 # 功能
 
 - [x] 更新 major, minor, patch or prerelease
