@@ -20,7 +20,7 @@
 
 # 介绍文章
 
-[pkg版本规范管理自动化最佳实践](https://juejin.im/post/5c4454146fb9a04a0164a289#heading-17)
+[pkg版本规范管理自动化最佳实践](https://juejin.im/post/5c4454146fb9a04a0164a289)
 
 # 功能
 
