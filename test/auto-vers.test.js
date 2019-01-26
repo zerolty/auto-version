@@ -2,7 +2,7 @@ const path = require('path');
 const assert = require('chai').assert;
 const {autoVersion, tipToUpdate} = require('../src/auto-vers');
 const global = require('../src/global');
-const {pkgUpdate, pkgRead} = require('../src/pkg');
+const {pkgUpdate, pkgRead} = require('package-io');
 
 describe('version test', () => {
     it('major update', () => {

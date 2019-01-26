@@ -1,10 +1,10 @@
 const semver = require('semver');
 const colors = require('colors');
+const {pkgRead, pkgUpdate} = require('package-io');
 const { prompt, Select } = require('enquirer');
 const global = require('./global');
 const { exec } = require('child_process');
 
-const {pkgRead, pkgUpdate} = require('./pkg');
 
 function autoVersion({version, type, extra, url, confirm, tip, git}) {
     const pkgValue = pkgRead(url);

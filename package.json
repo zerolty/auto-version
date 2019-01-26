@@ -1,6 +1,6 @@
 {
   "name": "auto-vers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "./dist/index.js",
   "bin": {
@@ -18,18 +18,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hua1995116/auto-version.git"
+    "url": "git+https://github.com/zerolty/auto-version.git"
   },
   "keywords": [],
   "author": "hua199116<qiufenghyf@163.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hua1995116/auto-version/issues"
+    "url": "https://github.com/zerolty/auto-version/issues"
   },
-  "homepage": "https://github.com/hua1995116/auto-version#readme",
+  "homepage": "https://github.com/zerolty/auto-version#readme",
   "dependencies": {
     "colors": "^1.3.3",
     "enquirer": "^2.3.0",
+    "package-io": "^1.0.2",
     "semver": "^5.6.0"
   },
   "devDependencies": {

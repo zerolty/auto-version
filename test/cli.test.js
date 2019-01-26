@@ -2,7 +2,7 @@ const path = require('path');
 const {expect} = require('chai');
 const run = require('inquirer-test');
 const global = require('../src/global');
-const {pkgUpdate, pkgRead} = require('../src/pkg');
+const {pkgUpdate, pkgRead} = require('package-io');
 
 const { UP, DOWN, ENTER } = run;
 
